@@ -1,4 +1,4 @@
-# Protocol Tracer: diagnostics and monitoring of industrial protocols
+# Protocol Tracer: Industrial Protocol Diagnostics and Monitoring
 
 **Protocol Tracer (TracerUI)** is a desktop application written in C++ using Qt 5.14.2. It cyclically monitors and controls device values, presenting communication tasks, data areas, and individual variables in an editable tree. It supports Modbus, OMC8000, and ELM327, with settings loaded from XML profiles.
 
