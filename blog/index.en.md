@@ -1,29 +1,29 @@
-# Protocol Tracer: a tree view of device values
+# Protocol Tracer: diagnostics and monitoring of industrial protocols
 
-**Protocol Tracer (TracerUI)** is a C++ and Qt desktop application for cyclic monitoring and control of configured device values. It presents communication tasks, areas, and typed nodes in an editable tree. Depending on the selected XML profile, it supports Modbus, OMC8000, and ELM327.
+**Protocol Tracer (TracerUI)** is a desktop application written in C++ using Qt 5.14.2. It cyclically monitors and controls device values, presenting communication tasks, data areas, and individual variables in an editable tree. It supports Modbus, OMC8000, and ELM327, with settings loaded from XML profiles.
 
 ![Protocol Tracer interface showing configured values and read/write details](../screenshots/Tracer01.png)
 
-## Live value overview
+## Real-time value monitoring
 
-After an XML profile is loaded, the application displays its tasks and data areas. The table shows read and write values, read/write timestamps, descriptions, and status indicators. Tasks can be started and stopped from the toolbar; writable nodes can be edited in the **W** column.
+After an XML profile is loaded, the application displays its tasks and data areas. The table shows read and write values, read/write timestamps, descriptions, and status indicators. Tasks can be started and stopped from the toolbar. Values that the profile permits writing can be edited in the **W** column.
 
-This is not a generic raw-packet capture tool. It polls the values and nodes defined by a profile and displays their associated status and errors.
+Protocol Tracer is not intended for passive sniffing of raw packets. It cyclically reads and displays variables defined in the profile, along with their status and any communication errors.
 
-## Supported profiles
+## Supported protocols and profiles
 
-- **Modbus** — serial or Ethernet tasks, with areas defining data type, address, count, and read/write access.
-- **OMC8000** — tasks over serial or network connections.
-- **ELM327** — serial tasks for the nodes configured in a profile.
+- **Modbus** — communication over serial or Ethernet; areas specify the data type, address, number of values, and read/write access.
+- **OMC8000** — communication over serial or network connections.
+- **ELM327** — serial communication using variables defined in the profile.
 
-Profiles describe tasks, areas, and nodes. A task defines its connection and polling interval; an area defines data and access; and a node describes a typed value, offset, and description. The root XML element (`modbus`, `omc8000`, or `elm327`) selects the corresponding application model.
+An XML profile describes tasks, data areas, and individual variables. Each task specifies its connection and polling interval, each area defines its data type and access permissions, and each variable has a type, offset, and description. The root XML element (`modbus`, `omc8000`, or `elm327`) selects the corresponding application model.
 
 ## Run the application
 
-A 64-bit Windows build is included in `bin/msvc2017_64/`. Start `TracerUI.exe`, open a matching XML profile through **File → Open**, and adjust the communication settings and addresses for your test setup before starting tasks.
+A 64-bit Windows build is included in `bin/msvc2017_64/`. Start `TracerUI.exe` and load a suitable XML profile using **File → Open**. Before starting tasks, check and adjust the communication settings and addresses for your test setup.
 
-The source project uses Qt 5 and qmake. To build the 64-bit version, open `TracerUI_64.pro` in Qt Creator with Qt 5.14.2 and the MSVC 2017 64-bit kit. The configuration format is described in [`TracerUI.txt`](../TracerUI.txt).
+The project is built with qmake. For the 64-bit version, open `TracerUI_64.pro` in Qt Creator and select a 64-bit MSVC 2017 kit with Qt 5.14.2. The XML configuration format is described in [`TracerUI.txt`](../TracerUI.txt).
 
-> **Caution:** Writing through the **W** column can change values on the connected device. Verify address mappings, access settings, and the target test device before starting communication.
+> **⚠️ Safety warning:** Writing through the **W** column can change values on the connected device. Before starting, verify address mappings and access permissions, and make sure you are using the intended test device.
 
 Source code: [CodElecCz/protocol-tracer](https://github.com/CodElecCz/protocol-tracer).
