@@ -34,5 +34,5 @@ The root element selects the backend: `modbus`, `omc8000`, or `elm327`. A task d
 
 ## Project article
 
-- [Česky: Protocol Tracer](https://www.codelec.cz/blog/protocol-tracer/)
-- [English: Protocol Tracer](https://www.codelec.cz/en/blog/protocol-tracer/)
+- [Česky: Protocol Tracer](https://codeleccz.github.io/codelec.web/blog/protocol-tracer/)
+- [English: Protocol Tracer](https://codeleccz.github.io/codelec.web/en/blog/protocol-tracer/)
